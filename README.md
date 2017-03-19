@@ -31,5 +31,4 @@ users_groups table
 
 ## Association
 User <- Users_group ->Group
-Group -> Message
 User -> Message
