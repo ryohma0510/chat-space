@@ -8,6 +8,8 @@ messages table
 |group_id|integer|not null , foreign key||
 |user_id|integer|not null , foreign key||
 
+references型でgroup_idとuser_idを設定して外部キー認証をせっていする
+
 groups table
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
@@ -26,6 +28,8 @@ users_groups table
 |:--|:--|:--|:--:|
 |user_id|integer|not null, foreign key||
 |group_id|integer|not null, foreign key ||
+
+references型でgroup_idとuser_idを設定して外部キー認証をせっていする
 
 ## Association
 User <- Users_group ->Group
