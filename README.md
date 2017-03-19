@@ -29,5 +29,5 @@ users_groups table
 
 ## Association
 User <- Users_group ->Group
-Group -> Message (polymorphic)
-User -> Message (polymorphic)
+Group -> Message
+User -> Message
