@@ -3,7 +3,7 @@
 messages table
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
-|content|text|not null|add|
+|content|string|not null|add|
 |image|string|||
 |group_id|references|not null , foreign key||
 |user_id|references|not null , foreign key||
