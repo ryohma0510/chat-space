@@ -1,24 +1,33 @@
-# README
+#Explanations for DB construcure
+##tables and columns
+messages table
+|column|type|constraint|index|
+|:--|:--|:--|:--:|
+|body|text|not null|add|
+|image|string|||
+|group_id|integer|not null , foreign key||
+|user_id|integer|not null , foreign key||
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+groups table
+|column|type|constraint|index|
+|:--|:--|:--|:--:|
+|name|string|not null||
 
-Things you may want to cover:
+users table
+|column|type|constraint|index|
+|:--|:--|:--|:--:|
+|name|string|not null||
+|email|string|not null, unique ||
+|password|string|not null||
 
-* Ruby version
 
-* System dependencies
+users_groups table
+|column|type|constraint|index|
+|:--|:--|:--|:--:|
+|user_id|integer|not null, foreign key||
+|group_id|integer|not null, foreign key ||
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##Association
+User <- Users_group ->Group
+Group -> Message (polymorphic)
+User -> Message (polymorphic)
