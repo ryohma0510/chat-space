@@ -1,5 +1,5 @@
-#Explanations for DB construcure
-##tables and columns
+# Explanations for DB construcure
+## tables and columns
 messages table
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
@@ -27,7 +27,7 @@ users_groups table
 |user_id|integer|not null, foreign key||
 |group_id|integer|not null, foreign key ||
 
-##Association
+## Association
 User <- Users_group ->Group
 Group -> Message (polymorphic)
 User -> Message (polymorphic)
