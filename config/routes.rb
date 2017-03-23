@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root :to => 'comments#index'
+  root 'comments#index'
 end
