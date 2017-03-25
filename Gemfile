@@ -58,3 +58,5 @@ gem "haml-rails", "~> 0.9"
 #introduce font-awesome
 gem "font-awesome-rails"
 
+#introduce gem 'devise'
+gem "devise"
