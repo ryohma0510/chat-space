@@ -1,14 +1,5 @@
 $mainBlueColor: #38AEF0;
 
-.notification {
-  height: 20px;
-  width: 100vw;
-  background-color: $mainBlueColor;
-  p {
-    text-align: center;
-  }
-}
-
 .chat {
   width: 100vw;
   &-side {
