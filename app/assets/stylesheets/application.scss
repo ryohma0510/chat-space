@@ -2,6 +2,16 @@
   *= require font-awesome
 */
 
+.notice{
+  background-color: #38AEF0;
+  text-align: center;
+}
+
+.alert {
+  background-color: #ed6d6d;
+  text-align: center;
+}
+
 @import "./reset";
 @import "./message-index";
 @import "./user";

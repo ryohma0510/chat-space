@@ -12,6 +12,9 @@ module ChatSpace
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    #Japanese
+    config.i18n.default_locale = :ja
+
     #not to make waste fail
     config.generators do |g|
       g.helper false
