@@ -38,8 +38,8 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', "~> 3.1.0"
-  gem 'factory_girl_rails', "~> 4.4.1"
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
 end
 
 group :development do
@@ -59,13 +59,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #install haml
-gem "haml-rails", "~> 0.9"
+gem 'haml-rails', '~> 0.9'
 
 #introduce font-awesome
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 #introduce gem 'devise'
-gem "devise"
+gem 'devise'
 
 #solve migration erorr
 gem 'rake', '< 11.0'
