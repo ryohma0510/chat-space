@@ -61,3 +61,6 @@ gem "font-awesome-rails"
 
 #introduce gem 'devise'
 gem "devise"
+
+#solve migration erorr
+gem 'rake', '< 11.0'
