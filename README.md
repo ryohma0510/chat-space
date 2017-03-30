@@ -1,6 +1,9 @@
 # Explanations for DB construcure
+
 ## tables and columns
+
 messages table
+
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
 |content|string|not null|add|
@@ -10,11 +13,13 @@ messages table
 
 
 groups table
+
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
 |name|string|not null||
 
 users table
+
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
 |name|string|not null||
@@ -23,6 +28,7 @@ users table
 
 
 users_groups table
+
 |column|type|constraint|index|
 |:--|:--|:--|:--:|
 |user_id|references|not null, foreign key||
@@ -30,5 +36,6 @@ users_groups table
 
 
 ## Association
+
 User <- Users_group ->Group
 User -> Message
