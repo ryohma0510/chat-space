@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
 
   def create
     Group.create(group_params)
-    redirect_to controller: 'comments', action: 'index'
+    redirect_to :root
   end
 
   private
