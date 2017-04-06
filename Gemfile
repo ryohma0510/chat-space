@@ -66,3 +66,6 @@ gem 'devise'
 
 #solve migration erorr
 gem 'rake', '< 11.0'
+
+#debugging
+gem 'pry-rails'
