@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @groups = Group.all
+    @groups = current_user.groups
     @group = Group.find(params[:id])
     @users = @group.users
   end
@@ -22,6 +22,6 @@ class GroupsController < ApplicationController
     selected_params[:user_ids].each do |id|
       users_groups_array << { user_id: id }
     end
-    return { name: "#{selected_params[:name]}", users_groups_attributes: users_groups_array }
+    return { name: "#{ selected_params[:name] }", users_groups_attributes: users_groups_array }
   end
 end
