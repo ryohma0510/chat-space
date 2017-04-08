@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+before_action :user_belongs_to_group?, only: :show
+
   def new
     @group = Group.new
   end
@@ -23,5 +25,10 @@ class GroupsController < ApplicationController
       users_groups_array << { user_id: id }
     end
     return { name: "#{ selected_params[:name] }", users_groups_attributes: users_groups_array }
+  end
+
+  def user_belongs_to_group?
+    group_id = params[:id]
+    redirect_to :root unless current_user.groups.ids.include?(group_id.to_i)
   end
 end
