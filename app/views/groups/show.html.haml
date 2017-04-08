@@ -1,0 +1,50 @@
+.chat
+  .chat-side
+    .chat-user
+      %h5 ryoma
+      .chat-user__actions
+        = link_to new_group_path do
+          %i.fa.fa-pencil-square-o
+        = link_to edit_user_registration_path do
+          %i.fa.fa-cog
+    %ul.chat-groups
+      - @groups.each do |group|
+        %li.chat-group
+          %a.chat-group__link{ href: group_path(group.id) }
+            %p.chat-group__name
+              = group.name
+            %p.chat-group__message 確認用メッセージ
+
+
+  .chat-main
+    .chat-header
+      .chat-header--left
+        %h2
+          = @group.name
+        %p.chat-header__users
+          Members:
+          - @users.each do |user|
+            = user[:name]
+          %span.chat-header__user
+      .chat-header--right
+        %a.chat-header__edit-btn{ href: '' } Edit
+    .chat-body
+      %ul.chat-messages
+        %li.chat-message
+          .chat-message__header
+            %p.chat-message__name ryoma
+            %p.chat-message__time 2017/03/17 14:20:06
+          %p.chat-message__body テストメッセージです
+        %li.chat-message
+          .chat-message__header
+            %p.chat-message__name ryoma
+            %p.chat-message__time 2017/03/17 14:20:06
+          %p.chat-message__body テストメッセージです
+    .chat-footer
+      %form.new-message
+        .chat-footer__body
+          %textarea{ placeholder: 'メッセージを入力してください' }
+          %label{ for: 'file' }
+            %input{ type: 'file', id: 'file', style: 'display:none;' }
+            %i.fa.fa-image
+        %input{ type: 'submit', value: 'Send', id: 'chat-footer__btn' }

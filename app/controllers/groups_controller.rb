@@ -4,8 +4,14 @@ class GroupsController < ApplicationController
   end
 
   def create
-    Group.create(group_params)
-    redirect_to :root
+    group = Group.create(group_params)
+    redirect_to group_path(group.id)
+  end
+
+  def show
+    @groups = Group.all
+    @group = Group.find(params[:id])
+    @users = @group.users
   end
 
   private
