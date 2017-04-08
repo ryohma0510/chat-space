@@ -21,7 +21,6 @@
       .chat-group-form__field--right
         #chat-group-users
           #chat-group-user-22.chat-group-user.clearfix
-            = f.hidden_field :group_id,value: @group.id #作成するグループのidをparamsで送る
             %p.chat-group-user__name
               = current_user.name
     .chat-group-form__field.clearfix
