@@ -19,5 +19,3 @@ class GroupsController < ApplicationController
     return { name: "#{selected_params[:name]}", users_groups_attributes: users_groups_array }
   end
 end
-
-
