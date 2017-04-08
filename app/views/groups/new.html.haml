@@ -3,12 +3,12 @@
   = form_for(@group) do |f|
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :name, 'グループ名', {class: 'chat-group-form__label'}
+        = f.label :name, 'グループ名', { class: 'chat-group-form__label' }
       .chat-group-form__field--right
-        = f.text_field :name, {id: 'chat_group_name', class: 'chat-group-form__input', placeholder: 'グループ名を入力してください'}
+        = f.text_field :name, { id: 'chat_group_name', class: 'chat-group-form__input', placeholder: 'グループ名を入力してください' }
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :チャットメンバーを追加, 'チャットメンバーを追加', {class: 'chat-group-form__label'}
+        = f.label :チャットメンバーを追加, 'チャットメンバーを追加', { class: 'chat-group-form__label' }
       .chat-group-form__field--right
         .chat-group-form__search.clearfix
           / = f.text_field :user, {id: 'user-search-field', class: 'chat-group-form__input', placeholder: '追加したいユーザー名を入力してください'}
@@ -17,7 +17,7 @@
         #user-search-result
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :チャットメンバー, 'チャットメンバー', {class: 'chat-group-form__label'}
+        = f.label :チャットメンバー, 'チャットメンバー', { class: 'chat-group-form__label' }
       .chat-group-form__field--right
         #chat-group-users
           #chat-group-user-22.chat-group-user.clearfix
@@ -27,4 +27,4 @@
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
       .chat-group-form__field--right
-        %input.chat-group-form__action-btn{'data-disable-with': 'Save', name: 'commit', type: 'submit', value: 'Save'}/
+        %input.chat-group-form__action-btn{ 'data-disable-with': 'Save', name: 'commit', type: 'submit', value: 'Save' }/
