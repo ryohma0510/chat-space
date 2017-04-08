@@ -8,9 +8,5 @@
         = link_to edit_user_registration_path do
           %i.fa.fa-cog
     %ul.chat-groups
-      - @groups.each do |group|
-        %li.chat-group
-          %a.chat-group__link{ href: group_path(group.id) }
-            %p.chat-group__name
-              = group.name
-            %p.chat-group__message 確認用メッセージ
+    %ul.chat-groups
+      = render partial: 'shared/group', collection: @groups
