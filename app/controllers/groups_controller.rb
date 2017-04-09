@@ -1,6 +1,10 @@
 class GroupsController < ApplicationController
 before_action :user_belongs_to_group?, only: :show
 
+  def index
+    @groups = current_user.groups
+  end
+
   def new
     @group = Group.new
   end
