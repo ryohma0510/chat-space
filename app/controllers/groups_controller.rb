@@ -6,8 +6,13 @@ before_action :user_belongs_to_group?, only: :show
   end
 
   def create
-    group = Group.create(group_params)
-    redirect_to group_path(group.id)
+    group = Group.new(group_params)
+    if group.name.present? && group_params[:users_groups_attributes].length != 1
+      group.save
+      redirect_to group_path(group.id)
+    else
+      redirect_to new_group_path
+    end
   end
 
   def show
