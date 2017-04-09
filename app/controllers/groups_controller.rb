@@ -28,7 +28,6 @@ before_action :user_belongs_to_group?, only: :show
   end
 
   def user_belongs_to_group?
-    group_id = params[:id]
-    redirect_to :root unless current_user.groups.ids.include?(group_id.to_i)
+    redirect_to :root unless current_user.groups.ids.include?(params[:id].to_i)
   end
 end
