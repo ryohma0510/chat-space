@@ -1,7 +1,8 @@
 .chat
   .chat-side
     .chat-user
-      %h5 ryoma
+      %h5
+        = current_user.name
       .chat-user__actions
         = link_to new_group_path do
           %i.fa.fa-pencil-square-o
