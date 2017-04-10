@@ -12,9 +12,9 @@ before_action :user_belongs_to_group?, only: :show
   def create
     group = Group.new(group_params)
     unless group.save
-      redirect_to new_group_path
+      redirect_to new_group_path, alert: 'グループ登録に失敗しました'
     else
-      redirect_to group_path(group.id)
+      redirect_to group_path(group.id), notice: 'グループ登録に成功しました'
     end
   end
 
@@ -27,12 +27,7 @@ before_action :user_belongs_to_group?, only: :show
   private
 
   def group_params
-    selected_params = params.require(:group).permit(:name, user_ids:[])
-    users_groups_array = []
-    selected_params[:user_ids].each do |id|
-      users_groups_array << { user_id: id }
-    end
-    return { name: "#{ selected_params[:name] }", users_groups_attributes: users_groups_array }
+    params.require(:group).permit(:name, user_ids:[])
   end
 
   def user_belongs_to_group?
