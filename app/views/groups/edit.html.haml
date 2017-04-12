@@ -3,22 +3,22 @@
   = form_for(@group) do |f|
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :name, 'グループ名', { class: 'chat-group-form__label' }
+        = f.label :name, 'グループ名', class: 'chat-group-form__label'
       .chat-group-form__field--right
-        = f.text_field :name, { id: 'group_name', class: 'chat-group-form__input' , placeholder: 'グループ名を入力してください', value: @group.name }
+        = f.text_field :name, id: 'group_name', class: 'chat-group-form__input' , placeholder: 'グループ名を入力してください', value: @group.name
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :チャットメンバーを追加, { class: 'chat-group-form__label' }
+        = f.label :チャットメンバーを追加, class: 'chat-group-form__label'
       .chat-group-form__field--right
         .chat-group-form__search.clearfix
-          = f.collection_check_boxes :user_ids, User.where.not(id: UsersGroup.where(group_id: @group.id).select(:user_id)), :id, :name, { id: 'user-search-field', class: 'chat-group-form__input' }
+          = f.collection_check_boxes :user_ids, User.where.not(id: UsersGroup.where(group_id: @group.id).select(:user_id)), :id, :name, id: 'user-search-field', class: 'chat-group-form__input'
           / = f.text_field :user, {placeholder: '追加したいユーザー名を入力してください', id: 'user-search-field', class: 'chat-group-form__input'}
         #user-search-result
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        = f.label :チャットメンバー, { class: 'chat-group-form__label--left'}
+        = f.label :チャットメンバー, class: 'chat-group-form__label--left'
       .chat-group-form__field--right
         %p.chat-group-form__member
           - @group.users.each do |user|
             = user.name
-        = f.submit 'Send', { class: 'chat-group-form__action-btn' }
+        = f.submit 'Send', class: 'chat-group-form__action-btn'
