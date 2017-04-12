@@ -28,12 +28,11 @@ before_action :get_group, only: [:show, :edit]
   end
 
   def update
-    group = Group.find(params[:id])
-    group.update(name: group_params[:name])
+    Group.find(params[:id]).update(name: group_params[:name])
     group_params[:user_ids].each do |user_id|
-      UsersGroup.create(user_id: user_id, group_id: group.id ) unless user_id.empty?
+      UsersGroup.create(user_id: user_id, group_id: params[:id] ) unless user_id.empty?
     end
-    redirect_to group_path(group.id), notice: 'グループ更新に成功しました'
+    redirect_to group_path(params[:id]), notice: 'グループ更新に成功しました'
   end
 
   private

@@ -6,7 +6,4 @@ class Group < ApplicationRecord
 
   #validation
   validates :name, presence: true
-
-  #accessor
-  attr_accessor :user
 end
