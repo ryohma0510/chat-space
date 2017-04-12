@@ -12,7 +12,7 @@
             = user[:name]
           %span.chat-header__user
       .chat-header--right
-        = link_to edit_group_path(@group.id), class: 'chat-header__edit-btn' do
+        = link_to edit_group_path(@group), class: 'chat-header__edit-btn' do
           Edit
     .chat-body
       %ul.chat-messages
