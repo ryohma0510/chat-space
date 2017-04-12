@@ -39,3 +39,4 @@ users_groups table
 
 User <- Users_group ->Group
 User -> Message
+Group -> Message
