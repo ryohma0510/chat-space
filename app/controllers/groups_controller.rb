@@ -24,6 +24,19 @@ before_action :user_belongs_to_group?, only: :show
     @users = @group.users
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    group = Group.find(params[:id])
+    group.update(name: group_params[:name])
+    group_params[:user_ids].each do |user_id|
+      UsersGroup.create(user_id: user_id, group_id: group.id ) unless user_id.empty?
+    end
+    redirect_to group_path(group.id), notice: 'グループ更新に成功しました'
+  end
+
   private
 
   def group_params
