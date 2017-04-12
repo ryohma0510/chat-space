@@ -11,8 +11,7 @@
         = f.label :チャットメンバーを追加, class: 'chat-group-form__label'
       .chat-group-form__field--right
         .chat-group-form__search.clearfix
-          = f.collection_check_boxes :user_ids, User.where.not(id: UsersGroup.where(group_id: @group.id).select(:user_id)), :id, :name, id: 'user-search-field', class: 'chat-group-form__input'
-          / = f.text_field :user, {placeholder: '追加したいユーザー名を入力してください', id: 'user-search-field', class: 'chat-group-form__input'}
+          = f.collection_check_boxes :user_ids, User.where.not(id: UsersGroup.registered(@group.id)), :id, :name, id: 'user-search-field', class: 'chat-group-form__input'
         #user-search-result
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
