@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 before_action :user_belongs_to_group?, only: :show
+before_action :get_group, only: [:show, :edit]
 
   def index
     @groups = current_user.groups
@@ -20,12 +21,10 @@ before_action :user_belongs_to_group?, only: :show
 
   def show
     @groups = current_user.groups
-    @group = Group.find(params[:id])
     @users = @group.users
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
@@ -45,5 +44,9 @@ before_action :user_belongs_to_group?, only: :show
 
   def user_belongs_to_group?
     redirect_to :root unless current_user.groups.ids.include?(params[:id].to_i)
+  end
+
+  def get_group
+    @group = Group.find(params[:id])
   end
 end
