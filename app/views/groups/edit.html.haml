@@ -18,6 +18,5 @@
         = f.label :チャットメンバー, class: 'chat-group-form__label--left'
       .chat-group-form__field--right
         %p.chat-group-form__member
-          - @group.users.each do |user|
-            = user.name
+          = render partial: 'shared/registered_users', collection: @group.users
         = f.submit 'Send', class: 'chat-group-form__action-btn'
