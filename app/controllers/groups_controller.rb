@@ -20,9 +20,10 @@ before_action :get_group, only: [:show, :edit]
   end
 
   def show
-    @groups  = current_user.groups
-    @users   = @group.users
-    @message = Message.new
+    @groups   = current_user.groups
+    @users    = @group.users
+    @message  = Message.new
+    @messages = @group.messages.order('created_at ASC')
   end
 
   def edit

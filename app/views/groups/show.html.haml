@@ -8,19 +8,14 @@
           = @group.name
         %p.chat-header__users
           Members:
-          - @users.each do |user|
-            = user[:name]
+          = render partial: 'shared/registered_users', collection: @users
           %span.chat-header__user
       .chat-header--right
         = link_to edit_group_path(@group), class: 'chat-header__edit-btn' do
           Edit
     .chat-body
       %ul.chat-messages
-        %li.chat-message
-          .chat-message__header
-            %p.chat-message__name ryoma
-            %p.chat-message__time 2017/03/17 14:20:06
-          %p.chat-message__body テストメッセージです
+        = render partial: 'shared/message', collection: @messages
     .chat-footer
       = form_for(@message) do |f|
         .chat-footer__body
