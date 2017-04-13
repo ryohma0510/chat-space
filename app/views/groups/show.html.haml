@@ -22,10 +22,11 @@
             %p.chat-message__time 2017/03/17 14:20:06
           %p.chat-message__body テストメッセージです
     .chat-footer
-      %form.new-message
+      = form_for(@message) do |f|
         .chat-footer__body
-          %textarea{ placeholder: 'メッセージを入力してください' }
-          %label{ for: 'file' }
-            %input{ type: 'file', id: 'file', style: 'display:none;' }
+          = f.text_area :content, placeholder: 'メッセージを入力してください'
+          = f.label :image do
             %i.fa.fa-image
-        %input{ type: 'submit', value: 'Send', id: 'chat-footer__btn' }
+          = f.file_field :image
+          = f.hidden_field :group_id, value: @group.id
+        = f.submit 'Send', id: 'chat-footer__btn'

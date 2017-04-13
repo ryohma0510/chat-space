@@ -20,8 +20,9 @@ before_action :get_group, only: [:show, :edit]
   end
 
   def show
-    @groups = current_user.groups
-    @users = @group.users
+    @groups  = current_user.groups
+    @users   = @group.users
+    @message = Message.new
   end
 
   def edit

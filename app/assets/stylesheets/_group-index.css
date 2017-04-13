@@ -119,6 +119,9 @@ $mainBlueColor: #38AEF0;
           line-height: 60px;
           padding-right: 10px;
         }
+        input {
+          display: none;
+        }
       }
       input#chat-footer__btn{
         height: 60px;
