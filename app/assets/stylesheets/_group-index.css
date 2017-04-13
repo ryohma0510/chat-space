@@ -3,6 +3,7 @@ $mainBlueColor: #38AEF0;
 .chat {
   width: 100vw;
   &-side {
+    overflow: scroll;
     height: 760px;
     width: 300px;
     background-color: #2f3e51;
@@ -80,6 +81,8 @@ $mainBlueColor: #38AEF0;
       background-color: #e6e3e3;
       ul {
         padding: 46px 0 0 40px;
+        height: 528px;
+        overflow: scroll;
         .chat-message {
           margin: 0 0 40px 0;
             &__name {
