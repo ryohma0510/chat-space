@@ -3,4 +3,4 @@
     %p.chat-group__name
       = group.name
     %p.chat-group__message
-      = group.messages.last.content unless group.messages.last.blank?
+      = group.messages.last.try(:content)
