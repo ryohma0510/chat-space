@@ -13,12 +13,12 @@ describe MessagesController, type: :controller do
   describe 'POST #create' do
     it 'redirects groups#show when a content of message exists' do
       post :create, message
-      expect(response).to redirect_to group_path(group.id)
+      expect(response).to redirect_to "/groups/#{group.id}"
     end
 
     it 'redirects groups#show when a content of message is nil' do
       post :create, { message: attributes_for(:message,content: '', user_id: user.id, group_id: group.id) }
-      expect(response).to redirect_to group_path(group.id)
+      expect(response).to redirect_to "/groups/#{group.id}"
     end
 
     it 'alerts when a content of message is nil' do
