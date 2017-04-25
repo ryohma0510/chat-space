@@ -14,6 +14,7 @@ $(function() {
     $.ajax({
       type:        'POST',
       data:        formdata,
+      // これは次に動かしたいコントローラーのパス
       url:         '/messages',
       dataType:    'json',
       // FormData使ってとってくると、下2つが必要。ajaxが勝手にとってくるやつとエラーを起こす
