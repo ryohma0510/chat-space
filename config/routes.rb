@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root        'groups#index'
   resources   :groups, only: [:new, :create, :show, :edit, :update]
   resources   :messages, only: [:create]
+  get         'users/search'  => 'users#search'
 end
