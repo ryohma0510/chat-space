@@ -1,0 +1,7 @@
+.clear-fix {
+    &:after {
+    clear: both;
+    display: block;
+    content: '';
+  }
+}
