@@ -1,0 +1,6 @@
+- if current_user.id != user.id
+  .chat-group-form__member.clear-fix
+    %p.chat-group-form__member__name{ class: "chat-group-form__member__#{user.id}" }
+      = user.name
+    = link_to '削除', '#', class: "chat-group-form__member__btn--remove chat-group-form__member__#{user.id}"
+    %input{ name: 'group[user_ids][]', value: user.id, type: 'hidden', id: 'group_user.ids' }

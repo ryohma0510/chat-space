@@ -30,9 +30,20 @@ before_action :get_group, only: [:show, :edit]
   end
 
   def update
-    Group.find(params[:id]).update(name: group_params[:name])
+    # グループの名前の更新
+    group = Group.find(params[:id])
+    group.update(name: group_params[:name])
+    # 編集前のグループのユーザーを集める
+    old_group_users = group.users
+    # 送られてきたparamsのuser_idsのユーザがなかったらcreate
     group_params[:user_ids].each do |user_id|
-      UsersGroup.create(user_id: user_id, group_id: params[:id] ) unless user_id.empty?
+      UsersGroup.where(user_id: user_id, group_id: group.id ).first_or_create
+    end
+    # paramsで送られてきたユーザを追加した後ののグループのユーザーを集める
+    old_group_users.each do |old_member|
+      unless group_params[:user_ids].include?(old_member.id.to_s)
+        UsersGroup.find_by(user_id: old_member.id).destroy
+      end
     end
     redirect_to group_path(params[:id]), notice: 'グループ更新に成功しました'
   end
@@ -50,4 +61,5 @@ before_action :get_group, only: [:show, :edit]
   def get_group
     @group = Group.find(params[:id])
   end
+
 end
