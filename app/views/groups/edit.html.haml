@@ -1,6 +1,6 @@
 .chat-group-form
   %h1 チャットグループ編集
-  = form_for(@group) do |f|
+  = form_for @group do |f|
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         = f.label :name, 'グループ名', class: 'chat-group-form__label'
@@ -11,12 +11,15 @@
         = f.label :チャットメンバーを追加, class: 'chat-group-form__label'
       .chat-group-form__field--right
         .chat-group-form__search.clearfix
-          = f.collection_check_boxes :user_ids, User.where.not(id: UsersGroup.registered(@group.id)), :id, :name, id: 'user-search-field', class: 'chat-group-form__input'
+          %input#user-search-field.chat-group-form__input{ type: 'text', name: 'keyword', placeholder: '追加したいユーザー名を入力してください' }
         #user-search-result
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         = f.label :チャットメンバー, class: 'chat-group-form__label--left'
-      .chat-group-form__field--right
-        %p.chat-group-form__member
-          = render partial: 'shared/registered_users', collection: @group.users
-        = f.submit 'Send', class: 'chat-group-form__action-btn'
+      .chat-group-form__field--right#registered
+        .chat-group-form__member.clear-fix
+          = current_user.name
+          %input{ name: 'group[user_ids][]', value: current_user.id, type: 'hidden' }
+        = render partial: 'shared/registered_users_delete', collection: @group.users, as: 'user'
+    .chat-group-form__field.clearfix
+      = f.submit 'Send', class: 'chat-group-form__action-btn'
