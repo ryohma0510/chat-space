@@ -40,7 +40,6 @@ before_action :get_group, only: [:show, :edit]
       UsersGroup.where(user_id: user_id, group_id: group.id ).first_or_create
     end
     # paramsで送られてきたユーザを追加した後ののグループのユーザーを集める
-    new_group_users = Group.find(params[:id]).users
     old_group_users.each do |old_member|
       unless group_params[:user_ids].include?(old_member.id.to_s)
         UsersGroup.find_by(user_id: old_member.id).destroy
