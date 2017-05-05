@@ -1,22 +1,15 @@
 $(function() {
   function buildMessage(message) {
-    return `<li class='chat-message'>
+    var html =  `<li class='chat-message'>
                   <div class='chat-message__header'>
                     <p class='chat-message__name'> ${ message.user_name } </p>
                     <p class='chat-message__time'> ${ message.created_at } </p>
-                  </div>
-                  <p class="chat-message__body"> ${ message.content } </p>
-                </li>`;
-  }
-
-  function buildImage(message) {
-    return `<li class='chat-message'>
-                  <div class='chat-message__header'>
-                    <p class='chat-message__name'> ${ message.user_name } </p>
-                    <p class='chat-message__time'> ${ message.created_at } </p>
-                  </div>
-                  <p class="chat-message__body"> <img src='${ message.image }' </p>
-                </li>`;
+                  </div>`
+    if (message.image === undefined) {
+      return html + `<p class="chat-message__body"> ${ message.content } </p></li>`
+    } else {
+      return html + `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
+    };
   }
 
   $('#new_message').on('submit', function(e) {
@@ -60,8 +53,9 @@ $(function() {
       contentType: false
     })
     .done(function(data) {
-      var html = buildImage(data);
+      var html = buildMessage(data);
       $('.chat-messages').append(html);
+      $('input[type="file"]').val('');
     })
     .fail(function() {
       alert('error');
