@@ -4,5 +4,8 @@ class Message < ApplicationRecord
   belongs_to :user
 
   #validation
-  validates :content, :user_id, :group_id, presence: true
+  validates :content, :user_id, :group_id, presence: true, if: 'image.blank?'
+
+  #carrierwave
+  mount_uploader :image, ImagesUploader
 end

@@ -72,3 +72,5 @@ gem 'devise'
 
 #solve migration erorr
 gem 'rake', '< 11.0'
+
+gem 'carrierwave'
