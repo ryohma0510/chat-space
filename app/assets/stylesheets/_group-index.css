@@ -102,6 +102,10 @@ $mainBlueColor: #38AEF0;
               font-size: 14px;
               color: #434A54;
               word-break: break-all;
+              img {
+                width: 200px;
+                height: 200px;
+              }
             }
 
         }

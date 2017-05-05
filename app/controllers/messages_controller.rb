@@ -16,10 +16,13 @@ class MessagesController < ApplicationController
   private
 
   def message_for_js(message)
-    if message.content.present?
-      { content: message.content, user_name: message.user.name, created_at: message.created_at.strftime('%Y年%m月%d日 %H時%M分') }
+    hash = { user_name: message.user.name, created_at: message.created_at.strftime('%Y年%m月%d日 %H時%M分') }
+    if message.content.present? && message.image.present?
+      return hash.merge({ content: message.content, image: message.image.to_s })
+    elsif message.content.present?
+      return hash.merge({ content: message.content })
     else
-      { image: message.image.to_s, user_name: message.user.name, created_at: message.created_at.strftime('%Y年%m月%d日 %H時%M分') }
+      return hash.merge({ image: message.image.to_s })
     end
   end
 

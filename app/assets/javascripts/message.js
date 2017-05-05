@@ -5,10 +5,12 @@ $(function() {
                     <p class='chat-message__name'> ${ message.user_name } </p>
                     <p class='chat-message__time'> ${ message.created_at } </p>
                   </div>`
-    if (message.image === undefined) {
+    if (message.content === undefined) {
+      return html + `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
+    } else if (message.image === undefined) {
       return html + `<p class="chat-message__body"> ${ message.content } </p></li>`
     } else {
-      return html + `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
+      return html + `<p class="chat-message__body"> ${ message.content } <br> <img src='${ message.image }'> </p></li>`
     };
   }
 
