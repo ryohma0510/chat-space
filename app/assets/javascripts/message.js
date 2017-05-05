@@ -1,7 +1,22 @@
 $(function() {
-  function buildHTML(message) {
-    var html = $('<li class="chat-message">').append(`<p class="chat-message__name"> ${message.user_name} </p><p class="chat-message__time"> ${message.created_at} </p><p class="chat-message__body"> ${message.content} </p>`);
-    return html;
+  function buildMessage(message) {
+    return `<li class='chat-message'>
+                  <div class='chat-message__header'>
+                    <p class='chat-message__name'> ${ message.user_name } </p>
+                    <p class='chat-message__time'> ${ message.created_at } </p>
+                  </div>
+                  <p class="chat-message__body"> ${ message.content } </p>
+                </li>`;
+  }
+
+  function buildImage(message) {
+    return `<li class='chat-message'>
+                  <div class='chat-message__header'>
+                    <p class='chat-message__name'> ${ message.user_name } </p>
+                    <p class='chat-message__time'> ${ message.created_at } </p>
+                  </div>
+                  <p class="chat-message__body"> <img src='${ message.image }' </p>
+                </li>`;
   }
 
   $('#new_message').on('submit', function(e) {
@@ -24,9 +39,29 @@ $(function() {
     })
     .done(function(data) {
       // ここのdataにformat.jsonで指定したインスタンスが入る
-      var html = buildHTML(data);
+      var html = buildMessage(data);
       $('.chat-messages').append(html);
       textField.val('');
+    })
+    .fail(function() {
+      alert('error');
+    });
+  });
+
+  $('form').on('change', 'input[type="file"]', function(e) {
+    e.preventDefault();
+    var formdata  = new FormData($('#new_message').get(0));
+    $.ajax({
+      type:        'POST',
+      data:        formdata,
+      url:         '/messages',
+      dataType:    'json',
+      processData: false,
+      contentType: false
+    })
+    .done(function(data) {
+      var html = buildImage(data);
+      $('.chat-messages').append(html);
     })
     .fail(function() {
       alert('error');
