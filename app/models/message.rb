@@ -5,4 +5,6 @@ class Message < ApplicationRecord
 
   #validation
   validates :content, :user_id, :group_id, presence: true
+  #carrierwave
+  mount_uploader :image, ImagesUploader
 end
