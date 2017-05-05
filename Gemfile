@@ -52,7 +52,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
   gem 'bullet'
-  gem 'carrierwave'
 end
 
 group :test do
@@ -73,3 +72,5 @@ gem 'devise'
 
 #solve migration erorr
 gem 'rake', '< 11.0'
+
+gem 'carrierwave'
