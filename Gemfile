@@ -74,3 +74,5 @@ gem 'devise'
 gem 'rake', '< 11.0'
 
 gem 'carrierwave'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'fog', require: 'fog/aws'
