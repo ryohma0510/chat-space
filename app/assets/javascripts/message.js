@@ -6,12 +6,14 @@ $(document).on('turbolinks:load', function() {
                     <p class='chat-message__time'> ${ message.created_at } </p>
                   </div>`
     if (message.content === undefined) {
-      return html + `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
+      html += `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
     } else if (message.image === undefined) {
-      return html + `<p class="chat-message__body"> ${ message.content } </p></li>`
+      html += `<p class="chat-message__body"> ${ message.content } </p></li>`
     } else {
-      return html + `<p class="chat-message__body"> ${ message.content } <br> <img src='${ message.image }'> </p></li>`
-    };
+      html += `<p class="chat-message__body"> ${ message.content } <br> <img src='${ message.image }'> </p></li>`
+    }
+    $('.chat-messages').append(html);
+    $('.chat-messages').scrollTop($('.chat-messages')[0].scrollHeight);
   }
 
   $('#new_message').on('submit', function(e) {
@@ -34,8 +36,7 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(data) {
       // ここのdataにformat.jsonで指定したインスタンスが入る
-      var html = buildMessage(data);
-      $('.chat-messages').append(html);
+      buildMessage(data);
       textField.val('');
     })
     .fail(function() {
@@ -55,8 +56,7 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(data) {
-      var html = buildMessage(data);
-      $('.chat-messages').append(html);
+      buildMessage(data);
       $('input[type="file"]').val('');
     })
     .fail(function() {
@@ -72,7 +72,7 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         type:     'GET',
         data:     {
-                  message_id: $('li:last').attr('id')    ,
+                  message_id: $('li:last').attr('id'),
                   group_id:   $('#message_group_id').attr('value'),
                   },
         url:      '/messages/reload',
@@ -80,8 +80,7 @@ $(document).on('turbolinks:load', function() {
       })
       .done(function(messages) {
         messages.forEach(function(message) {
-          var html = buildMessage(message);
-          $('.chat-messages').append(html);
+          buildMessage(message);
         });
       })
       .fail(function() {
@@ -91,5 +90,5 @@ $(document).on('turbolinks:load', function() {
       clearInterval(timer);
     }
   }
-  var timer = setInterval(autoLoad, 1000 * 20)
+  var timer = setInterval(autoLoad, 1000 * 60 * 5);
 });
