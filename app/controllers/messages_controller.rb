@@ -15,9 +15,8 @@ class MessagesController < ApplicationController
 
   def reload
     # 「idがビューに表示されているidより大きい&&group_idが今のグループ&&user_idが今のユーザーでない」レコードを探す。配列になる
-    new_messages = Message.where("id > #{params[:message_id]}", group_id: params[:group_id]).where.not(user_id: current_user.id)
     # 配列の中身をJSで扱える形に加工する
-    new_messages = new_messages.map{ |new_message| message_for_js(new_message) }
+    new_messages = Message.where("id > #{params[:message_id]}", group_id: params[:group_id]).where.not(user_id: current_user.id).map{ |new_message| message_for_js(new_message) }
     respond_to do |format|
       format.json { render json: new_messages }
     end
