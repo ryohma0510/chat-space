@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
       html += `<p class="chat-message__body"> ${ message.content } <br> <img src='${ message.image }'> </p></li>`
     }
     $('.chat-messages').append(html);
-    $('.chat-messages').scrollTop($('.chat-messages')[0].scrollHeight);
+    $('.chat-messages').animate({ scrollTop: ($('.chat-messages')[0].scrollHeight)}, 1000 * 1);
   }
 
   $('#new_message').on('submit', function(e) {
@@ -90,5 +90,5 @@ $(document).on('turbolinks:load', function() {
       clearInterval(timer);
     }
   }
-  var timer = setInterval(autoLoad, 1000 * 60 * 5);
+  var timer = setInterval(autoLoad, 1000 * 5);
 });
