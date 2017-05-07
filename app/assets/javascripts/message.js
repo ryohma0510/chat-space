@@ -1,6 +1,6 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   function buildMessage(message) {
-    var html =  `<li class='chat-message'>
+    var html =  `<li class='chat-message' id='${message.id}'>
                   <div class='chat-message__header'>
                     <p class='chat-message__name'> ${ message.user_name } </p>
                     <p class='chat-message__time'> ${ message.created_at } </p>
@@ -63,4 +63,33 @@ $(function() {
       alert('error');
     });
   });
+
+  // 自動更新のための関数
+  var autoLoad = function() {
+    var url = location.href;
+    // 今のURLがメッセージ一覧のURLかを確かめる。違ったらタイマーを止める
+    if (url.match(/groups\/\d/)) {
+      $.ajax({
+        type:     'GET',
+        data:     {
+                  message_id: $('li:last').attr('id')    ,
+                  group_id:   $('#message_group_id').attr('value'),
+                  },
+        url:      '/messages/reload',
+        dataType: 'json'
+      })
+      .done(function(messages) {
+        messages.forEach(function(message) {
+          var html = buildMessage(message);
+          $('.chat-messages').append(html);
+        });
+      })
+      .fail(function() {
+        console.log('error');
+      });
+    } else {
+      clearInterval(timer);
+    }
+  }
+  var timer = setInterval(autoLoad, 1000 * 20)
 });
