@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   //削除ボタンが押された時のやつ
   $(document).on('click', '.chat-group-form__member__btn--remove',function(e) {
     e.preventDefault();
@@ -31,9 +31,9 @@ $(function() {
   }
 
   //インクリメンタルサーチする
-  $('#user-search-field').on('keyup', function(e) {
+    $('.chat-group-form__search').on('keyup', function(e) {
     $('#user-search-result').children().remove();
-    input = $('#user-search-field').val();
+    input = $('#group-user-search').val();
     $.ajax({
       type:        'GET',
       data:        { keyword:  input },
@@ -45,10 +45,10 @@ $(function() {
         var add_btn = buildAddButton(data[i]);
         $('#user-search-result').append(add_btn);
       }
-      $('#user-search-field').val();
+      $('#group-user-search').val();
     })
     .fail(function() {
-      alert('error');
+      console.log('error');
     });
   });
 });

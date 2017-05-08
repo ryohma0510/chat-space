@@ -1,17 +1,19 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   function buildMessage(message) {
-    var html =  `<li class='chat-message'>
+    var html =  `<li class='chat-message' id='${message.id}'>
                   <div class='chat-message__header'>
                     <p class='chat-message__name'> ${ message.user_name } </p>
                     <p class='chat-message__time'> ${ message.created_at } </p>
                   </div>`
     if (message.content === undefined) {
-      return html + `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
+      html += `<p class="chat-message__body"> <img src='${ message.image }'> </p></li>`
     } else if (message.image === undefined) {
-      return html + `<p class="chat-message__body"> ${ message.content } </p></li>`
+      html += `<p class="chat-message__body"> ${ message.content } </p></li>`
     } else {
-      return html + `<p class="chat-message__body"> ${ message.content } <br> <img src='${ message.image }'> </p></li>`
-    };
+      html += `<p class="chat-message__body"> ${ message.content } <br> <img src='${ message.image }'> </p></li>`
+    }
+    $('.chat-messages').append(html);
+    $('.chat-messages').animate({ scrollTop: ($('.chat-messages')[0].scrollHeight)}, 1000 * 1);
   }
 
   $('#new_message').on('submit', function(e) {
@@ -34,8 +36,7 @@ $(function() {
     })
     .done(function(data) {
       // ここのdataにformat.jsonで指定したインスタンスが入る
-      var html = buildMessage(data);
-      $('.chat-messages').append(html);
+      buildMessage(data);
       textField.val('');
     })
     .fail(function() {
@@ -55,12 +56,39 @@ $(function() {
       contentType: false
     })
     .done(function(data) {
-      var html = buildMessage(data);
-      $('.chat-messages').append(html);
+      buildMessage(data);
       $('input[type="file"]').val('');
     })
     .fail(function() {
       alert('error');
     });
   });
+
+  // 自動更新のための関数
+  var autoLoad = function() {
+    var url = location.href;
+    // 今のURLがメッセージ一覧のURLかを確かめる。違ったらタイマーを止める
+    if (url.match(/groups\/\d/)) {
+      $.ajax({
+        type:     'GET',
+        data:     {
+                  message_id: $('li:last').attr('id'),
+                  group_id:   $('#message_group_id').attr('value'),
+                  },
+        url:      '/messages/reload',
+        dataType: 'json'
+      })
+      .done(function(messages) {
+        messages.forEach(function(message) {
+          buildMessage(message);
+        });
+      })
+      .fail(function() {
+        console.log('error');
+      });
+    } else {
+      clearInterval(timer);
+    }
+  }
+  var timer = setInterval(autoLoad, 1000 * 5);
 });
