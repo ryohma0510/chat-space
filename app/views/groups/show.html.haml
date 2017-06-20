@@ -3,8 +3,7 @@
   .chat-main
     .chat-header
       .chat-header--left
-        %h2
-          = @group.name
+        %h2= @group.name
         %p.chat-header__users
           Members:
           = render partial: 'shared/registered_users', collection: @users
@@ -17,10 +16,9 @@
         = render partial: 'shared/message', collection: @messages
     .chat-footer
       = form_for(@message) do |f|
-        .chat-footer__body
-          = f.text_area :content, class: 'chat-footer__body__text-field' , placeholder: 'メッセージを入力してください'
-          = f.label :image do
-            %i.fa.fa-image
-          = f.file_field :image
-          = f.hidden_field :group_id, value: @group.id
+        = f.text_area :content, class: 'chat-footer__body__text-field' , placeholder: 'メッセージを入力してください'
+        = f.label :image do
+          %i.fa.fa-image
+        = f.file_field :image
+        = f.hidden_field :group_id, value: @group.id
         = f.submit 'Send', id: 'chat-footer__btn'

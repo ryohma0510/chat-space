@@ -1,21 +1,21 @@
-$mainBlueColor: #38AEF0;
-
 .chat {
-  width: 100vw;
+  width: 100%;
+  height: 100%;
+  min-width: 1090px;
   &-side {
     overflow: scroll;
-    height: 760px;
-    width: 300px;
-    background-color: #2f3e51;
+    height: 100%;
+    width: $chatSideWidth;
+    background-color: $chatSideMainColor;
     float: left;
     .chat-user {
       width: calc(100% - 40px);
-      height: 96px;
-      background-color: #253141;
+      height: $chatUserHeight;
+      background-color: $chatSideUserColor;
       padding: 0 20px 0 20px;
       h5 {
         font-size: 16px;
-        color: #FFFFFF;
+        color: $white;
         float: left;
         line-height: 96px;
       }
@@ -23,7 +23,7 @@ $mainBlueColor: #38AEF0;
         float: right;
         line-height: 96px;
         .fa {
-          color: white;
+          color: $white;
         }
       }
     }
@@ -33,12 +33,12 @@ $mainBlueColor: #38AEF0;
         padding-bottom: 40px;
         &__name {
           font-size: 15px;
-          color: #FFFFFF;
+          color: $white;
           padding-top: 20px;
         }
         &__message {
           font-size: 11px;
-          color: #FFFFFF;
+          color: $white;
           padding-top: 5px;
           white-space: nowrap;
           overflow: hidden;
@@ -48,22 +48,22 @@ $mainBlueColor: #38AEF0;
     }
   }
   &-main {
-    height: 760px;
-    width: calc(100vw - 300px);
+    height: 100%;
+    width: calc(100% - #{$chatSideWidth});
     float: left;
     .chat-header {
-      height: 96px;
+      height: $chatMainHeaderHeight;
       width: 100%;
       &--left {
         float: left;
         h2 {
           font-size: 20px;
-          color: #333333;
+          color: $black;
           padding: 25px 0 0 40px;
         }
         p {
           font-size: 12px;
-          color: #999999;
+          color: $fontGray;
           padding: 15px 0 0 40px;
          }
       }
@@ -80,11 +80,11 @@ $mainBlueColor: #38AEF0;
       }
     }
     .chat-body {
-      height: 574px;
-      background-color: #e6e3e3;
+      height: calc(100% - #{$chatMainHeaderHeight} - #{$chatMainFooterHeight});
+      background-color: $mainGray;
       ul {
         padding: 46px 0 0 40px;
-        height: 528px;
+        height: 100%;
         overflow: scroll;
         .chat-message {
           margin: 0 0 40px 0;
@@ -92,15 +92,15 @@ $mainBlueColor: #38AEF0;
               float: left;
               padding-right: 10px;
               font-size: 16px;
-              color: #434A54;
+              color: $black;
             }
             &__time {
-              color: #c9cfd1;
+              color: $fontGray;
             }
             &__body {
               padding-top: 10px;
               font-size: 14px;
-              color: #434A54;
+              color: $black;
               word-break: break-all;
               img {
                 width: 200px;
@@ -112,38 +112,40 @@ $mainBlueColor: #38AEF0;
       }
     }
     .chat-footer {
-      width: calc(100% - 40px);
-      height: 50px;
+      width: 100%;
+      height: $chatMainFooterHeight;
       background-color: #d1d1d1;
-      padding: 20px 0 20px 40px;
-      &__body {
-        background-color: white;
-        width: 950px;
-        float: left;
-        textarea {
-          height: 50px;
-          width: 900px;
-          border-style: none;
-        }
-        .fa-image {
-          float: right;
-          line-height: 60px;
-          padding-right: 10px;
-        }
-        input {
-          display: none;
-        }
+      textarea {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        width: 80%;
+        height: 70%;
+        border-style: none;
+        resize: none;
       }
-      input#chat-footer__btn {
-        height: 60px;
+      label {
+        cursor: pointer;
+      }
+      .fa-image {
+        position: relative;
+        left: 30px;
+        line-height: 60px;
+        padding-right: 10px;
+      }
+      input[type='file'] {
+        display: none;
+      }
+      #chat-footer__btn {
         width: 100px;
-        margin-left: 15px;
+        height: 60px;
+        margin-left: 20px;
         background-color: $mainBlueColor;
-        float: left;
-        color: white;
+        color: $white;
         line-height: 60px;
         text-align: center;
         font-size: 20px;
+        cursor: pointer;
       }
     }
   }
